@@ -1,0 +1,95 @@
+print( "Hello! Welcome to the best game of Trivia ever played!")
+print("In this game you will play a round of trivia, answer right as with each correct answer, you earn points, and you want to earn the highest!")
+print("Without further ado, lets play the ultimate game of TRIVIA!!!")
+print()
+def rules():
+    print("Here are some of the rules: 1) Make sure you select the right letter")
+    print("2) You will will have three tries so make sure you get the answer correct the first time as you won't earn any points if you get the answer wrong the first time!!")
+    print()
+
+# These questions/answers were taken from the website(s) called: Buzzfeed.com and Parade.com
+geoQuestions = ["What U.S. state is home to no documented poisonous snakes?: ", 
+            "What is the name of the smallest country in the world?: ", 
+            "What is the name of the driest continent on Earth?: ", 
+            "In which ocean is the Bermuda Triangle located?: ",
+            "Which state was not one of the 13 original colonies?:  ", 
+            "The Hoover Dam was built over which river?: ",
+            "Which country is home to the most volcanos?: ", 
+            "How many U.S. states share a border with Canada?: "]
+            
+geoOptions = [["A. Alaska ", "B. Texas ", "C. Colorado", "D. Mexico"],
+          ["A. India", "B. Madagascar ", "C. The Vatican City ", "D. Maldives "], 
+          ["A. South America ", "B. Antarctica  ", "C. Asia ", "D. Europe "], 
+          ["A. Artic ", "B. Indian ", "C. Pacfific ", "D. Atlantic "], 
+          ["A. Maine ", "B. Georgia ", "C. New Jersey ", "D. Rhode Island "], 
+          ["A. Colorado River", "B.  Phoenix River ", "C. Missouri River ", "D. Mississippi River"],
+          ["A. Canada ", "B. China  ", "C. Indonesia", "D. Russia "],
+          ["A. 20 ", "B. 13 ", "C. 10", "D. 4"]]
+
+geoAnswers = ["A", "C", "B", "D", "A", "A", "C", "B"]
+
+# These questions/answers were taken from the website Parade.com
+disQuestions = ["What year did Disneyland open?: ",
+                "What is the name of Andy's neighbor in Toy Story?: ", 
+                "Rapunzel's chameleon in Tangled is called what?: ", 
+                "What does 'Hakuna Matata' mean?: ",
+                "Genie was stuck in the lamp for how many years before Aladdin found him?: ",
+                "Who is the fashion designer in The Incredibles?: ", 
+                "Who is the youngest Disney princess?: ",
+                "What name did Ursula go by when she took human form?: "]
+
+disOptions = [["A. 1955 ", "B. 1960 ", "C. 1890", "D. 2006"], 
+        ["A. Andy ", "B. Sid ", "C. Rex ", "D. Ken "],
+        ["A. Olaf ", "B. Pascal ", "C. Flynn ", "D. Cupid "],
+        ["A. Land ", "B. Hello ", "C. Happy ", "D. No Worries "],
+        ["A. 20 ", "B. 10,000 ", "C. 500 ", "D. 20,000 "],
+        ["A. Tony ", "B. Dash ", "C. Edna Mode ", "D. Bob "],
+        ["A. Snow White ", "B. Belle ", "C. Ariel ", "D. Mulan "],
+        ["A. Arista ", "B. Rose ", "C. Anna ", "D. Vanessa "]]
+
+disAnswers = ["A", "B", "B", "D", "B", "C", "A", "D"]
+
+
+def category():
+        while True:
+            choose_category = input("Choose a category: Geography or Disney? ")
+            if choose_category.lower() == "geography":
+               game(geoQuestions, geoOptions, geoAnswers)
+               break
+            elif choose_category.lower() == "disney":
+                game(disQuestions, disOptions, disAnswers)
+                break
+            else:
+                print("Bad!")
+
+
+def game(questions,options,answers):
+    question_number = 0
+    attempts = 3 
+    score = 0
+# Lines 67, 69, and 71-74 are credited to "Bro Code". 
+    for question in questions:
+        print(question)
+        for option in options[question_number]:
+            print(option)
+       
+        while True:
+            guess = input("Enter a letter: ").upper()
+            
+            if guess == answers[question_number]:
+                score += 1
+                print("Correct!")
+                break
+            else:
+                attempts-=1
+                print("Incorrect! You have " + str(attempts) + " attempt(s) left.")
+            if attempts == 0:
+                break
+        attempts = 3
+        print()
+        question_number += 1
+    print("Your score is " + str(score) + " points out of 8")
+    
+
+rules() 
+category()
